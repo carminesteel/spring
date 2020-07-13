@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>크롤링 결과</title>
+ </style>
+ 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<h1>[다음날씨]</h1>
+	<div id="daum">
+		<span id="today"></span>
+		<span id="weather"></span>
+	</div>
+	<h1>[네이버 거래상위]</h1>
+	<div id="naver"></div>
+</body>
+<script>
+	getWeather();
+	
+	var weather=[];
+	
+	function getWeather(){
+		$.ajax({
+			type : "get",
+			url : "/weather.json",
+			dataType : "json",
+			success : function(data) {
+				$("#today").html(data.date);
+				var i=0;
+				$(data.array).each(function(){
+					var part=this.part;
+					var ico=this.ico;
+					var temper=this.temper;
+					var wa=this.wa;
+					console.log(part + ico + temper + wa);
+					weather[i]=part + "" + ico + "" + temper + "" + wa
+					i++;
+				});
+				
+				i=0
+				var interval=setInterval(function(){
+					$("#weather").html(weather[i]);
+					if(i<weather.length-1){
+						i++;
+					}else{
+						i=0;
+					}
+				},3000);
+			}
+		})	
+	}
+	
+	function getStock(){
+		$.ajax({
+			type : "get",
+			url : "/stock.json",
+			dataType : "json",
+			success : function(data) {
+				$("#today").html(data.date);
+				var i=0;
+				$(data.array).each(function(){
+					var part=this.part;
+					var ico=this.ico;
+					var temper=this.temper;
+					var wa=this.wa;
+					console.log(part + ico + temper + wa);
+					weather[i]=part + "" + ico + "" + temper + "" + wa
+					i++;
+				});
+				
+				i=0
+				var interval=setInterval(function(){
+					$("#weather").html(weather[i]);
+					if(i<weather.length-1){
+						i++;
+					}else{
+						i=0;
+					}
+				},3000);
+			}
+		})	
+	}
+</script>
+</html>

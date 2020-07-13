@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>이미지검색</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<h1>[이미지검색]</h1>
+	<input type="text" id="query" value="송혜교">
+	<button id="btnSearch">검색</button>
+	<table id="tbl"></table>
+	<script id="temp" type="text/x-handlebars-template">
+	{{#each documents}}
+		<tr>
+			<td width=500>{{image_url}}</td>
+			<td><button>다운로드</td>
+		</tr>
+	{{/each}}
+	</script>
+</body>
+<script>
+	function getList(){
+		var query=$("#query").val();
+		
+	}
+</script>
+
+</html>

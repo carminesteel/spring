@@ -1,0 +1,10 @@
+package com.example.domain;
+
+public class AirVO {
+	private String title;
+	private String info;
+	private double rating;
+	private String city;
+	private String image;
+	
+}

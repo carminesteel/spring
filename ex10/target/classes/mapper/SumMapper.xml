@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SumMapper">
+    <select id="sum1" resultType="com.example.domain.SumVO">
+        select lname name, avg(grade) value
+        from enrollments e, courses c
+        where e.lcode=c.lcode
+        group by lname
+        order by lname
+    </select>
+    
+    <select id="sum2" resultType="com.example.domain.SumVO">
+        select s.sname name, avg(grade) value
+        from students s, enrollments e
+        where s.scode=e.scode
+        group by sname
+        order by sname
+    </select>
+    
+    <select id="sum3" resultType="com.example.domain.SumVO">
+        select c.persons value, c.lname name
+		from enrollments e right join courses c
+		on c.lcode=e.lcode
+		group by c.lname
+		order by c.persons;
+    </select>
+    
+    <select id="sum4" resultType="com.example.domain.SumVO">
+        select count(*) value,avg(grade) value2, max(grade) value3,s.sname name
+        from students s, enrollments e
+        where s.scode=e.scode
+        group by s.sname
+        order by s.sname
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.box {
+	width: 100px;
+	height: 150px;
+	padding: 5px;
+	margin: 5px;
+	background: gray;
+	color: white;
+	float: left;
+	font-size: 15px;
+}
+
+a {
+	color: pink;
+}
+</style>
+</head>
+<body>
+	<h1>상품목록</h1>
+	<div style="width: 480px; background: yellow; overflow: hidden;">
+		<c:forEach items="${list}" var="vo">
+			<div class="box">
+				<c:if test="${vo.image!=null && vo.image!=''}">
+					<img src="display?fileName=${vo.image}" width=100>
+				</c:if>
+				<c:if test="${vo.image==null || vo.image==''}">
+					<img src="http://placehold.it/100x80" width=100>
+				</c:if>
+				<div>
+					<a href="read?pcode=${vo.pcode}">${vo.pcode}</a>
+				</div>
+				<div>${vo.pname}</div>
+				<div>${vo.price}원</div>
+			</div>
+		</c:forEach>
+	</div>
+	<button onclick="location.href='insert'">상품등록</button>
+</body>

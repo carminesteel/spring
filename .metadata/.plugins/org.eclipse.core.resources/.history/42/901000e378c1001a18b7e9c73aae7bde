@@ -1,0 +1,7 @@
+package com.example.mapper;
+
+public interface UserMapper {
+	public int login(UserVO vo) {
+		return zz;
+	}
+}

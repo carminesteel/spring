@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>상품등록</title>
+</head>
+<body>
+	<h1>[상품등록]</h1>
+	<form name="frm" action="insert" method="post" enctype="multipart/form-data">
+		<table border=1>
+			<tr>
+				<td width=100>상품코드</td>
+				<td><input type="text" name="pcode"></td>
+			</tr>
+			<tr>
+				<td width=100>상품명</td>
+				<td><input type="text" name="pname"></td>
+			</tr>
+			<tr>
+				<td width=100>상품가격</td>
+				<td><input type="text" name="price"></td>
+			</tr>
+			<tr>
+				<td width=100>대표이미지</td>
+				<td width=400>
+					<input type="file" name="file">
+					<img src="http://placehold.it/150x120">
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="저장">
+		<input type="reset" value="취소">
+		<input type="button" value="목록">
+	</form>
+</body>
+</html>

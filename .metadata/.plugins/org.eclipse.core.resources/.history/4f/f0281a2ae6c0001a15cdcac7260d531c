@@ -1,0 +1,21 @@
+package com.example.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.domain.AirVO;
+import com.example.mapper.AirMapper;
+
+@Controller
+public class AirController {
+	@Autowired
+	AirMapper mapper;
+	
+	@RequestMapping("/insert")
+	@ResponseBody
+	public void insert(AirVO vo) {
+		System.out.println(vo.toString());
+	}
+}

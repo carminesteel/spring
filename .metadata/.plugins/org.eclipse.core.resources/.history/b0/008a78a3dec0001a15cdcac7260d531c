@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>숙박정보</title>
+		<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<h1>[숙박정보 : 서울]</h1>
+	<table id="tbl"></table>
+	<script id="temp" type="text/x-handlebars-template">
+	{{#each array}}
+		<tr class="row">
+			<td width=500>
+				<img src="{{image}}" width=200>
+			</td>
+			<td><button>SEx</button></td>
+		</tr>
+	{{/each}}
+	</script>
+</body>
+<script>
+getList();
+
+	function getList() {
+		$.ajax({
+			type : "get",
+			url : "/airbnb.json"
+			dataType : "json",
+			success : function(data) {
+				var template = Handlebars.compile($("#temp").html());
+				$("#tbl").html(template(data));
+			}
+		});
+	}
+</script>
+</html>

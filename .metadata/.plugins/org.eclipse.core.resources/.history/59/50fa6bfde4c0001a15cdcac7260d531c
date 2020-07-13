@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>숙박정보</title>
+		<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<h1>[숙박정보 : 서울]</h1>
+	<button id="btnInsert">저장</button>
+	<table id="tbl"></table>
+	<script id="temp" type="text/x-handlebars-template">
+	{{#each array}}
+		<tr class="row">
+			<td><input class="chk" type="checkbox"></td>
+			<td width=500>
+				<img src="{{image}}" width=200>
+			</td>
+			<td width=500>
+				<div class="title"><b>{{title}}</b></div>
+				<div class="info">{{info}}</div>
+				<div class="rating">{{rating}}</div>
+			</td>
+		</tr>
+	{{/each}}
+	</script>
+</body>
+<script>
+	$("#btnInsert").on("click", function(){
+		if(!confirm("저장하실래요?")) return;
+		$("#tbl .row .chk").each(function(){
+			var row=$(this).parent().parent();
+			var title=row.find(".title").html();
+			alert(title);
+		});
+	});
+	
+getList();
+
+	function getList() {
+		$.ajax({
+			type : "get",
+			url : "/airbnb.json",
+			dataType : "json",
+			success : function(data) {
+				var template = Handlebars.compile($("#temp").html());
+				$("#tbl").html(template(data));
+			}
+		});
+	}
+</script>
+</html>
